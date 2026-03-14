@@ -143,7 +143,7 @@ clj-nrepl-eval -p <PORT> --reset-session "(def x 1)"
 ## Important Notes
 
 - **Prefer heredoc via stdin:** Use `clj-nrepl-eval -p <PORT> <<'EOF' ... EOF` to avoid shell escaping issues
-- **Sessions persist:** State (vars, namespaces, loaded libraries) persists across invocations until the nREPL server restarts or `--reset-session` is used
+- **Sessions persist:** State (vars, namespaces, loaded libraries) persists across invocations until the nREPL server restarts. `--reset-session` only resets the nREPL session (clearing dynamic vars like `*e`, `*1`), not `def`'d vars or loaded namespaces
 - **Automatic delimiter repair:** The tool automatically repairs missing or mismatched parentheses
 - **Always use :reload:** When requiring namespaces, use `:reload` to pick up recent changes
 - **Default timeout:** 2 minutes (120000ms) - increase for long-running operations
