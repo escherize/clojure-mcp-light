@@ -4,8 +4,9 @@
 
 Simple CLI tools for LLM coding assistants working with Clojure.
 
-**TL;DR:** Three CLI tools for Clojure development with LLM coding assistants:
+**TL;DR:** CLI tools for Clojure development with LLM coding assistants:
 - [`clj-nrepl-eval`](#clj-nrepl-eval-llm-nrepl-connection-without-an-mcp) - nREPL evaluation from command line
+- `clj-socket-eval` - Socket REPL evaluation from command line (same UX as `clj-nrepl-eval`, for projects running a plain socket REPL instead of nREPL)
 - [`clj-paren-repair-claude-hook`](#clj-paren-repair-claude-hook) - Auto-fix delimiters via hooks (Claude Code)
 - [`clj-paren-repair`](#clj-paren-repair) - On-demand delimiter fix (Gemini CLI, Codex, etc.)
 
@@ -21,7 +22,8 @@ These tools solve both problems.
 
 | Tool | Use Case |
 |------|----------|
-| [`clj-nrepl-eval`](#clj-nrepl-eval-llm-nrepl-connection-without-an-mcp) | REPL evaluation from any LLM |
+| [`clj-nrepl-eval`](#clj-nrepl-eval-llm-nrepl-connection-without-an-mcp) | REPL evaluation from any LLM (nREPL) |
+| `clj-socket-eval` | REPL evaluation from any LLM (socket REPL) |
 | [`clj-paren-repair-claude-hook`](#clj-paren-repair-claude-hook) | Claude Code (or any LLM that supports Claude hooks) |
 | [`clj-paren-repair`](#clj-paren-repair) | Gemini CLI, Codex CLI, any LLM with shell |
 
@@ -37,6 +39,13 @@ bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.2
 ```bash
 bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.2 --as clj-nrepl-eval --main-opts '["-m" "clojure-mcp-light.nrepl-eval"]'
 ```
+
+**Install socket REPL eval tool:**
+```bash
+bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.2 --as clj-socket-eval --main-opts '["-m" "clojure-mcp-light.socket-eval"]'
+```
+
+Usage mirrors `clj-nrepl-eval` (`-p/--port`, `-H/--host`, `-t/--timeout`, stdin/heredoc). Socket REPL has no sessions, no discovery, no stdout/stderr split, and no interrupt — use `clj-nrepl-eval` if you need those. Delimiter errors are auto-repaired before sending.
 
 **Install on-demand repair tool:**
 ```bash

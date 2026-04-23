@@ -15,4 +15,5 @@
 
  :bbin/bin {clj-paren-repair-claude-hook {:main-opts ["-m" "clojure-mcp-light.hook"]}
             clj-nrepl-eval {:main-opts ["-m" "clojure-mcp-light.nrepl-eval"]}
+            clj-socket-eval {:main-opts ["-m" "clojure-mcp-light.socket-eval"]}
             clj-paren-repair {:main-opts ["-m" "clojure-mcp-light.paren-repair"]}}}

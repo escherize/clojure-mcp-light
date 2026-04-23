@@ -7,6 +7,7 @@ Instructions for Claude Code when working with this repository.
 clojure-mcp-light provides CLI tooling for Clojure development in Claude Code:
 - **clj-paren-repair-claude-hook** - Auto-fixes delimiter errors in Clojure files via hooks
 - **clj-nrepl-eval** - nREPL evaluation with automatic delimiter repair
+- **clj-socket-eval** - Socket REPL evaluation with automatic delimiter repair (same UX as `clj-nrepl-eval`, for plain socket REPLs)
 
 ## Essential Commands
 
@@ -42,6 +43,8 @@ EOF
 **hook.clj** - Intercepts Write/Edit operations to auto-fix delimiter errors. For Write: fixes before writing. For Edit: creates backup, fixes after edit, restores if unfixable. Optional `--cljfmt` flag for formatting. Supports `--stats` for tracking delimiter events.
 
 **nrepl_eval.clj** - nREPL client with timeout handling, persistent sessions, and delimiter repair. Use `--connected-ports` to discover connections, `--port` to specify target.
+
+**socket_eval.clj** - Socket REPL client with timeout handling and delimiter repair. No sessions, no discovery, no stdout/stderr split — the simpler counterpart to `nrepl_eval.clj` for projects running a plain `clojure.core.server` socket REPL.
 
 **tmp.clj** - Session-scoped temp file management with automatic cleanup via SessionEnd hook.
 
